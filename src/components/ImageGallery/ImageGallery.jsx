@@ -1,22 +1,17 @@
-import ImageCard from "../ImageCard/ImageCard";
-import s from "./ImageGallery.module.css";
+import styles from './ImageGallery.module.css';
+import ImageCard from '../ImageCard/ImageCard';
 
-const ImageGallery = ({ photos, onPhotoClick, galleryRef }) => {
-  if (!photos || photos.length === 0) return null;
+export default function ImageGallery({ galleryItems, onImageClick }) {
+    return (
+        <>
+            <ul className={styles.gallery}>
+                {galleryItems.map((item, index) => (
+                    <li key={index} className={styles.galleryItem}>
+                        <ImageCard imageItem={item} onClick={onImageClick} />
+                    </li>
+                ))}
+            </ul>
 
-  return (
-    <ul className={s.gallery} ref={galleryRef}>
-      {photos.map((photo) => (
-        <li key={photo.id}>
-          <ImageCard
-            src={photo.urls.small}
-            alt={photo.alt_description}
-            onClick={() => onPhotoClick(photo)}
-          />
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-export default ImageGallery;
+        </>
+    );
+}

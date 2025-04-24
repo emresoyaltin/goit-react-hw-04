@@ -1,11 +1,10 @@
-import s from "./ImageCard.module.css";
-
-const ImageCard = ({ src, alt, onClick }) => {
-  return (
-    <div className={s.card} onClick={onClick}>
-      <img src={src} alt={alt} />
-    </div>
-  );
-};
-
-export default ImageCard;
+export default function ImageCard({ imageItem, onClick }) {
+    return (
+        <img 
+            src={imageItem.urls.small} 
+            alt={imageItem.alt_description} 
+            onClick={() => onClick(imageItem.urls.full)} 
+            style={{ cursor: 'pointer', width: '100%' }}
+        />
+    );
+}
